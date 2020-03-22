@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   mainTextContainer: {
     width: "80%",
     marginTop: 20,
-    marginBottom: 130
+    marginBottom: 120
   },
   mainText: {
     fontFamily: "quicksand-bold",

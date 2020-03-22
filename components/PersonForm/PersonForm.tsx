@@ -1,34 +1,88 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { useForm } from "react-hook-form";
 
 import Input from "./Input";
 import Colors from "../../assets/theme/Colors";
 import ConfirmationButton from "./ConfirmationButton";
 
 const PersonForm = ({ navigation }) => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit, setValue, errors } = useForm({
+    validateCriteriaMode: "all"
+  });
+
+  const onSubmit = data => {
+    console.log(data);
+    navigation.navigate("AccountCreated");
+  };
+
+  useEffect(() => {
+    register(
+      { name: "email" },
+      {
+        required: "Email address is required",
+        pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      }
+    );
+
+    register(
+      { name: "password" },
+      {
+        required: "Password is required",
+        pattern: /^(?=.*\d)[A-Za-z\d].*$/,
+        minLength: 6
+      }
+    );
+  }, [register]);
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <Input
-          autoCapitalize="off"
-          autoCorrect={false}
-          placeholder="Email"
-          onChangeText={inputText => setUserName(inputText)}
-          value={userName}
+          blurOnSubmit={true}
+          autoCapitalize="none"
+          placeholder="email"
+          textContentType="emailAddress"
+          onChangeText={text => {
+            setValue("email", text);
+          }}
         />
+        <View style={styles.validationErrorContainer}>
+          {errors.email && errors.email.types.required && (
+            <Text style={styles.validationError}>Email is required</Text>
+          )}
+          {errors.email && errors.email.types.pattern && (
+            <Text style={styles.validationError}>Email in not valid</Text>
+          )}
+        </View>
       </View>
+
       <View style={styles.inputContainer}>
         <Input
-          autoCapitalize="off"
-          autoCorrect={false}
-          placeholder="Password"
-          onChangeText={inputText => setPassword(inputText)}
-          value={password}
+          secureTextEntry={true}
+          autoCapitalize="none"
+          blurOnSubmit={false}
+          placeholder="password"
+          textContentType="password"
+          onChangeText={text => {
+            setValue("password", text);
+          }}
         />
+        <View style={styles.validationErrorContainer}>
+          {errors.password && errors.password.types.required && (
+            <Text style={styles.validationError}>Password is required</Text>
+          )}
+          {errors.password && errors.password.types.minLength && (
+            <Text style={styles.validationError}>Password is to short</Text>
+          )}
+          {errors.password && errors.password.types.pattern && (
+            <Text style={styles.validationError}>
+              Password require at least 1 digit.
+            </Text>
+          )}
+        </View>
       </View>
+
       <View style={styles.agreementContainer}>
         <Text style={styles.agreement}>
           By activating my account, I agree to the{" "}
@@ -43,10 +97,7 @@ const PersonForm = ({ navigation }) => {
         </Text>
       </View>
       <View style={styles.nextButtonContainer}>
-        <ConfirmationButton
-          title="Next"
-          onPress={() => navigation.navigate("AccountCreated")}
-        >
+        <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
           Next
         </ConfirmationButton>
       </View>
@@ -60,19 +111,31 @@ const styles = StyleSheet.create({
   container: { width: "90%", flex: 1 },
   inputContainer: {
     height: 56,
-    marginBottom: 30
+    marginBottom: 40
+  },
+  validationErrorContainer: {
+    marginTop: 10
+  },
+  validationError: {
+    textAlign: "center",
+    fontFamily: "quicksand",
+    fontSize: 13,
+    color: Colors.messages
   },
   agreementContainer: {
-    width: "75%"
+    alignItems: "center"
   },
   agreement: {
     fontFamily: "quicksand",
-    color: Colors.primary,
     textAlign: "center",
-    fontSize: 16
+    color: Colors.primary,
+    fontSize: 16,
+    width: "90%",
+    marginTop: 30
   },
   nextButtonContainer: {
     justifyContent: "flex-end",
+    alignItems: "center",
     flex: 1
   }
 });
