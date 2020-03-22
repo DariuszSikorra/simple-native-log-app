@@ -6,10 +6,22 @@ import Input from "./Input";
 import Colors from "../../assets/theme/Colors";
 import ConfirmationButton from "./ConfirmationButton";
 
+type defaultValuesType = {
+  email: string;
+  password: string;
+};
+
+const defaultValues: defaultValuesType = {
+  email: "",
+  password: ""
+};
+
 const PersonForm = ({ navigation }) => {
-  const { register, handleSubmit, setValue, errors } = useForm({
+  const { register, handleSubmit, setValue, watch, errors } = useForm({
+    defaultValues,
     validateCriteriaMode: "all"
   });
+  const values = watch();
 
   const onSubmit = data => {
     console.log(data);
@@ -46,6 +58,7 @@ const PersonForm = ({ navigation }) => {
           onChangeText={text => {
             setValue("email", text);
           }}
+          value={values.email}
         />
         <View style={styles.validationErrorContainer}>
           {errors.email && errors.email.types.required && (
@@ -67,6 +80,7 @@ const PersonForm = ({ navigation }) => {
           onChangeText={text => {
             setValue("password", text);
           }}
+          value={values.password}
         />
         <View style={styles.validationErrorContainer}>
           {errors.password && errors.password.types.required && (
