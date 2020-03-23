@@ -1,30 +1,45 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView,
+  Dimensions
+} from "react-native";
+
 
 import Colors from "../assets/theme/Colors";
 
 import PersonForm from "../components/components/PersonForm";
 import NavigationButton from "../components/components/NavigationButton";
+import { Header } from "@react-navigation/stack";
 
 const CreateAccountScreen = ({ navigation }) => {
   return (
-    <View style={styles.screen}>
-      <View style={styles.backButtonContainer}>
-        <NavigationButton onPress={() => navigation.goBack()}>
-          {"< back"}
-        </NavigationButton>
-      </View>
-      <View style={styles.mainTextContainer}>
-        <Text style={styles.mainText}>Create your account</Text>
-      </View>
-      <View style={styles.personImgContainer}>
-        <Image
-          source={require("../assets/CreateAccountScreen/PERSON.png")}
-          style={styles.personImg}
-        />
-      </View>
-      <PersonForm navigation={navigation} />
-    </View>
+    <ScrollView >
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss} >
+        <View style={styles.screen}>
+          <View style={styles.backButtonContainer}>
+            <NavigationButton onPress={() => navigation.goBack()}>
+              {"< back"}
+            </NavigationButton>
+          </View>
+          <View style={styles.mainTextContainer}>
+            <Text style={styles.mainText}>Create your account</Text>
+          </View>
+          <View style={styles.personImgContainer}>
+            <Image
+              source={require("../assets/CreateAccountScreen/PERSON.png")}
+              style={styles.personImg}
+            />
+          </View>
+          <PersonForm navigation={navigation} />
+        </View>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   );
 };
 
@@ -35,7 +50,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    minHeight: Dimensions.get("window").height
   },
   backButtonContainer: {
     alignSelf: "flex-start"

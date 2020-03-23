@@ -49,7 +49,8 @@ export default function App() {
           options={{
             title: "Create account",
             headerTitle: () => <HeaderImg />,
-            headerLeft: null
+            headerLeft: null,
+            headerTransparent: true
           }}
         />
         <Stack.Screen
