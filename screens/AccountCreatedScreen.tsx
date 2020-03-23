@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 
-import ConfirmationButton from "../components/PersonForm/ConfirmationButton";
+import ConfirmationButton from "../components/components/ConfirmationButton";
 import Colors from "../assets/theme/Colors";
 
 const AccountCreatedScreen = ({ navigation }) => {

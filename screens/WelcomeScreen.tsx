@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
-import ConfirmationButton from "../components/PersonForm/ConfirmationButton";
+import { StyleSheet, Text, View, Alert, Image } from "react-native";
+import ConfirmationButton from "../components/components/ConfirmationButton";
 import Colors from "../assets/theme/Colors";
 
 const WelcomeScreen = props => {
@@ -29,7 +29,13 @@ const WelcomeScreen = props => {
         >
           Create a new account
         </ConfirmationButton>
-        <ConfirmationButton onPress={() => {}}>
+        <ConfirmationButton
+          onPress={() => {
+            Alert.alert("Log In to my account", "Coming soon...", [
+              { text: "Sorry!", style: "cancel" }
+            ]);
+          }}
+        >
           Log In to my Account
         </ConfirmationButton>
       </View>
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     fontFamily: "quicksand-bold",
     fontSize: 39,
     textAlign: "center",
-    color: Colors.primary,
+    color: Colors.primary
   },
   secText: {
     fontFamily: "quicksand",

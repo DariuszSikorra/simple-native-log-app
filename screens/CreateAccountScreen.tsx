@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 import Colors from "../assets/theme/Colors";
 
-import PersonForm from "../components/PersonForm/PersonForm";
-import NavigationButton from "../components/PersonForm/NavigationButton";
+import PersonForm from "../components/components/PersonForm";
+import NavigationButton from "../components/components/NavigationButton";
 
 const CreateAccountScreen = ({ navigation }) => {
   return (
