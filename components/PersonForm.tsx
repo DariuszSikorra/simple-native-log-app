@@ -61,10 +61,14 @@ const PersonForm = ({ navigation }) => {
           value={values.email}
         />
         <View style={styles.validationErrorContainer}>
-          {errors.email && errors.email.types.required && (
+          {errors.email && 
+          //@ts-ignore
+          errors.email.types.required && (
             <Text style={styles.validationError}>Email is required</Text>
           )}
-          {errors.email && errors.email.types.pattern && (
+          {errors.email && 
+          //@ts-ignore
+          errors.email.types.pattern && (
             <Text style={styles.validationError}>Email in not valid</Text>
           )}
         </View>
@@ -83,13 +87,19 @@ const PersonForm = ({ navigation }) => {
           value={values.password}
         />
         <View style={styles.validationErrorContainer}>
-          {errors.password && errors.password.types.required && (
+          {errors.password && 
+          //@ts-ignore
+          errors.password.types.required && (
             <Text style={styles.validationError}>Password is required</Text>
           )}
-          {errors.password && errors.password.types.minLength && (
+          {errors.password && 
+          //@ts-ignore
+          errors.password.types.minLength && (
             <Text style={styles.validationError}>Password is to short</Text>
           )}
-          {errors.password && errors.password.types.pattern && (
+          {errors.password && 
+          //@ts-ignore
+          errors.password.types.pattern && (
             <Text style={styles.validationError}>
               Password require at least 1 digit.
             </Text>

@@ -25,7 +25,7 @@ const ImgPicker = props => {
     if (!hasPermission) {
       return;
     }
-    const image = await ImagePicker.launchCameraAsync({
+    const image: any = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
       quality: 0.5
