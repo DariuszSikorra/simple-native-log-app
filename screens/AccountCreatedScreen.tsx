@@ -1,36 +1,36 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
-import ConfirmationButton from "../components/components/ConfirmationButton";
 import Colors from "../assets/theme/Colors";
+import Header from "../assets/Header";
+import LayoutWrapper from "../assets/LayoutWrapper";
+import ConfirmationButton from "../components/ConfirmationButton";
 
 const AccountCreatedScreen = ({ navigation }) => {
   return (
-    <View style={styles.screen}>
+    <LayoutWrapper>
+      <Header />
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={require("../assets/AccountCreatedScreen/IMG.png")} />
+        <Image
+          style={styles.image}
+          source={require("../assets/AccountCreatedScreen/IMG.png")}
+        />
       </View>
       <View style={styles.mainTextContainer}>
         <Text style={styles.mainText}>Account created!</Text>
       </View>
       <View style={styles.nextButtonContainer}>
-        <ConfirmationButton onPress={() => navigation.popToTop()}>
+        <ConfirmationButton onPress={() => navigation.navigate("TakeAPhotoScreen")}>
           Continue
         </ConfirmationButton>
       </View>
-    </View>
+    </LayoutWrapper>
   );
 };
 
 export default AccountCreatedScreen;
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white"
-  },
   imageContainer: {
     marginTop: 160
   },

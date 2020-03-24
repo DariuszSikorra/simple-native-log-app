@@ -7,11 +7,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import CreateAccountScreen from "./screens/CreateAccountScreen";
 import AccountCreatedScreen from "./screens/AccountCreatedScreen";
-import HeaderImg from "./assets/HeaderImg";
+import TakeAPhotoScreen from "./screens/TakeAPhotoScreen";
+import SubmitAPhotoScreen from "./screens/SubmitAPhotoScreen";
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    "quicksand": require("./assets/fonts/Quicksand-Medium.ttf"),
+    quicksand: require("./assets/fonts/Quicksand-Medium.ttf"),
     "quicksand-bold": require("./assets/fonts/Quicksand-Bold.ttf")
   });
 };
@@ -39,18 +40,15 @@ export default function App() {
           component={WelcomeScreen}
           options={{
             title: "Welcome",
-            headerTitle: () => <HeaderImg />,
-            headerLeft: null
+            headerShown: false
           }}
         />
         <Stack.Screen
           name="CreateAccount"
           component={CreateAccountScreen}
           options={{
-            title: "Create account",
-            headerTitle: () => <HeaderImg />,
-            headerLeft: null,
-            headerTransparent: true
+            title: "Create Account",
+            headerShown: false
           }}
         />
         <Stack.Screen
@@ -58,10 +56,23 @@ export default function App() {
           component={AccountCreatedScreen}
           options={{
             title: "Account created!",
-            headerTitle: () => <HeaderImg />,
-            headerLeft: null
+            headerShown: false
           }}
-        />
+        /><Stack.Screen
+        name="TakeAPhotoScreen"
+        component={TakeAPhotoScreen}
+        options={{
+          title: "Take a Photo",
+          headerShown: false
+        }}
+      /><Stack.Screen
+      name="SubmitAPhotoScreen"
+      component={SubmitAPhotoScreen}
+      options={{
+        title: "Submit a photo",
+        headerShown: false
+      }}
+    />
       </Stack.Navigator>
     </NavigationContainer>
   );

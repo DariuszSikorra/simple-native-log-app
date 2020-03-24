@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, TouchableNativeFeedback,Platform } from "react-native";
-import Colors from "../../assets/theme/Colors";
+import Colors from "../assets/theme/Colors";
 
 const NavigationButton = props => {
     let ButtonComponent: any = TouchableOpacity;

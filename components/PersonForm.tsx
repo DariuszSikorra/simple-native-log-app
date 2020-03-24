@@ -3,8 +3,8 @@ import { StyleSheet, View, Text } from "react-native";
 import { useForm } from "react-hook-form";
 
 import Input from "./Input";
-import Colors from "../../assets/theme/Colors";
 import ConfirmationButton from "./ConfirmationButton";
+import Colors from "../assets/theme/Colors";
 
 type defaultValuesType = {
   email: string;
@@ -111,7 +111,10 @@ const PersonForm = ({ navigation }) => {
         </Text>
       </View>
       <View style={styles.nextButtonContainer}>
-        <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
+      {/* <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
+          Next
+        </ConfirmationButton>         */}
+        <ConfirmationButton title="Next" onPress={onSubmit}>
           Next
         </ConfirmationButton>
       </View>

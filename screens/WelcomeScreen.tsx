@@ -1,11 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View, Alert, Image } from "react-native";
-import ConfirmationButton from "../components/components/ConfirmationButton";
+
 import Colors from "../assets/theme/Colors";
+import Header from "../assets/Header";
+import LayoutWrapper from "../assets/LayoutWrapper";
+import ConfirmationButton from "../components/ConfirmationButton";
 
 const WelcomeScreen = props => {
   return (
-    <View style={styles.screen}>
+    <LayoutWrapper>
+      <Header />
       <View style={styles.headerTextContainer}>
         <Text style={styles.headerText}>Lower my bills</Text>
       </View>
@@ -39,19 +43,13 @@ const WelcomeScreen = props => {
           Log In to my Account
         </ConfirmationButton>
       </View>
-    </View>
+    </LayoutWrapper>
   );
 };
 
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white"
-  },
   headerTextContainer: {},
   headerText: {
     fontFamily: "quicksand-bold",
@@ -59,9 +57,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Colors.primary
   },
-  imgContainer: { marginTop: 40 },
+  imgContainer: { marginTop: 30 },
   img: {},
-  textContainer: { marginTop: 130, width: "80%" },
+  textContainer: { marginTop: 100, width: "80%" },
   mainText: {
     fontFamily: "quicksand-bold",
     fontSize: 39,

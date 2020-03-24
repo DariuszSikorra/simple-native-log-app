@@ -7,7 +7,7 @@ import {
   TouchableNativeFeedback,
   Platform
 } from "react-native";
-import Colors from "../../assets/theme/Colors";
+import Colors from "../assets/theme/Colors";
 
 const ConfirmationButton = props => {
   let ButtonComponent: any = TouchableOpacity;

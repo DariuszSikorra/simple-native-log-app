@@ -5,23 +5,22 @@ import {
   View,
   Image,
   TouchableWithoutFeedback,
-  Keyboard,
-  ScrollView,
-  Dimensions
+  Keyboard
 } from "react-native";
-
 
 import Colors from "../assets/theme/Colors";
 
-import PersonForm from "../components/components/PersonForm";
-import NavigationButton from "../components/components/NavigationButton";
-import { Header } from "@react-navigation/stack";
+import PersonForm from "../components/PersonForm";
+import Header from "../assets/Header";
+import LayoutWrapper from "../assets/LayoutWrapper";
+import NavigationButton from "../components/NavigationButton";
 
 const CreateAccountScreen = ({ navigation }) => {
   return (
-    <ScrollView >
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss} >
-        <View style={styles.screen}>
+    <LayoutWrapper style={styles.screen}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss}>
+        <View style={styles.wrapperContainer}>
+          <Header />
           <View style={styles.backButtonContainer}>
             <NavigationButton onPress={() => navigation.goBack()}>
               {"< back"}
@@ -39,7 +38,7 @@ const CreateAccountScreen = ({ navigation }) => {
           <PersonForm navigation={navigation} />
         </View>
       </TouchableWithoutFeedback>
-    </ScrollView>
+    </LayoutWrapper>
   );
 };
 
@@ -47,18 +46,19 @@ export default CreateAccountScreen;
 
 const styles = StyleSheet.create({
   screen: {
+    justifyContent: "flex-start"
+  },
+  wrapperContainer: {
     flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "white",
-    minHeight: Dimensions.get("window").height
+    width: "100%"
   },
   backButtonContainer: {
     alignSelf: "flex-start"
   },
   mainTextContainer: {
     width: "80%",
-    marginTop: 20,
     marginBottom: 120
   },
   mainText: {
