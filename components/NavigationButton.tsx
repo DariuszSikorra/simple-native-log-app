@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TouchableNativeFeedback,Platform } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TouchableNativeFeedback,Platform, Dimensions } from "react-native";
 import Colors from "../assets/theme/Colors";
 
 const NavigationButton = props => {
@@ -20,13 +20,19 @@ const NavigationButton = props => {
 
 export default NavigationButton;
 
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   buttonContainer: {
   },
   buttonText: {
     fontFamily: "quicksand",
     color: Colors.primary,
-    fontSize: 20,
-    margin: 15
+    // fontSize: 20
+    fontSize: windowHeight * 0.015 + 8,
+    // margin: 15
+    margin: windowHeight * 0.015 + 10,
+    marginTop: Platform.OS === "ios" ?  windowHeight * 0.01 : 48 - windowHeight * 0.025
   }
 });

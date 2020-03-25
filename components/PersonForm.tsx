@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import Input from "./Input";
 import ConfirmationButton from "./ConfirmationButton";
 import Colors from "../assets/theme/Colors";
+import { SAVE_EMAIL_PASSWORD } from "../store/actions";
 
 type defaultValuesType = {
   email: string;
@@ -17,6 +19,7 @@ const defaultValues: defaultValuesType = {
 };
 
 const PersonForm = ({ navigation }) => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, setValue, watch, errors } = useForm({
     defaultValues,
     validateCriteriaMode: "all"
@@ -24,8 +27,11 @@ const PersonForm = ({ navigation }) => {
   const values = watch();
 
   const onSubmit = data => {
-    console.log(data);
     navigation.navigate("AccountCreated");
+    dispatch({
+      type: SAVE_EMAIL_PASSWORD,
+      payload: { email: data.email, password: data.password }
+    });
   };
 
   useEffect(() => {
@@ -61,16 +67,16 @@ const PersonForm = ({ navigation }) => {
           value={values.email}
         />
         <View style={styles.validationErrorContainer}>
-          {errors.email && 
-          //@ts-ignore
-          errors.email.types.required && (
-            <Text style={styles.validationError}>Email is required</Text>
-          )}
-          {errors.email && 
-          //@ts-ignore
-          errors.email.types.pattern && (
-            <Text style={styles.validationError}>Email in not valid</Text>
-          )}
+          {errors.email &&
+            //@ts-ignore
+            errors.email.types.required && (
+              <Text style={styles.validationError}>Email is required</Text>
+            )}
+          {errors.email &&
+            //@ts-ignore
+            errors.email.types.pattern && (
+              <Text style={styles.validationError}>Email in not valid</Text>
+            )}
         </View>
       </View>
 
@@ -87,23 +93,23 @@ const PersonForm = ({ navigation }) => {
           value={values.password}
         />
         <View style={styles.validationErrorContainer}>
-          {errors.password && 
-          //@ts-ignore
-          errors.password.types.required && (
-            <Text style={styles.validationError}>Password is required</Text>
-          )}
-          {errors.password && 
-          //@ts-ignore
-          errors.password.types.minLength && (
-            <Text style={styles.validationError}>Password is to short</Text>
-          )}
-          {errors.password && 
-          //@ts-ignore
-          errors.password.types.pattern && (
-            <Text style={styles.validationError}>
-              Password require at least 1 digit.
-            </Text>
-          )}
+          {errors.password &&
+            //@ts-ignore
+            errors.password.types.required && (
+              <Text style={styles.validationError}>Password is required</Text>
+            )}
+          {errors.password &&
+            //@ts-ignore
+            errors.password.types.minLength && (
+              <Text style={styles.validationError}>Password is to short</Text>
+            )}
+          {errors.password &&
+            //@ts-ignore
+            errors.password.types.pattern && (
+              <Text style={styles.validationError}>
+                Password require at least 1 digit.
+              </Text>
+            )}
         </View>
       </View>
 
@@ -121,9 +127,9 @@ const PersonForm = ({ navigation }) => {
         </Text>
       </View>
       <View style={styles.nextButtonContainer}>
-      {/* <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
+        {/* <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
           Next
-        </ConfirmationButton>         */}
+        </ConfirmationButton> */}
         <ConfirmationButton title="Next" onPress={onSubmit}>
           Next
         </ConfirmationButton>
@@ -134,19 +140,26 @@ const PersonForm = ({ navigation }) => {
 
 export default PersonForm;
 
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
-  container: { width: "90%", flex: 1 },
+  container: { width: windowWidth * 0.9, flex: 1 },
   inputContainer: {
-    height: 56,
-    marginBottom: 40
+    // height: 56,
+    height: windowHeight * 0.04 + 15,
+    // marginBottom: 40
+    marginBottom: windowHeight * 0.01 + 30
   },
   validationErrorContainer: {
-    marginTop: 10
+    // marginTop: 5
+    marginTop: windowHeight * 0.015 - 4
   },
   validationError: {
     textAlign: "center",
     fontFamily: "quicksand",
-    fontSize: 13,
+    // fontSize: 13,
+    fontSize: windowHeight * 0.01 + 6,
     color: Colors.messages
   },
   agreementContainer: {
@@ -156,13 +169,16 @@ const styles = StyleSheet.create({
     fontFamily: "quicksand",
     textAlign: "center",
     color: Colors.primary,
-    fontSize: 16,
+    // fontSize: 16,
+    fontSize: windowHeight * 0.013 + 5,
     width: "90%",
-    marginTop: 30
+    // marginTop: 30
+    marginTop: windowHeight * 0.025
   },
   nextButtonContainer: {
     justifyContent: "flex-end",
     alignItems: "center",
-    flex: 1
+    flex: 1,
+    marginTop: windowHeight * 0.02
   }
 });

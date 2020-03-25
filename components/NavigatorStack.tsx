@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -7,7 +7,7 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import CreateAccountScreen from "../screens/CreateAccountScreen";
 import AccountCreatedScreen from "../screens/AccountCreatedScreen";
 import TakeAPhotoScreen from "../screens/TakeAPhotoScreen";
-import SubmitAPhotoScreen from "../screens/SubmitAPhotoScreen";
+import PersonalInformation from "../screens/PersonalInformation";
 
 const Stack = createStackNavigator();
 
@@ -48,10 +48,10 @@ const NavigatorStack = () => {
           }}
         />
         <Stack.Screen
-          name="SubmitAPhotoScreen"
-          component={SubmitAPhotoScreen}
+          name="PersonalInformation"
+          component={PersonalInformation}
           options={{
-            title: "Submit a photo",
+            title: "Set personal info",
             headerShown: false
           }}
         />

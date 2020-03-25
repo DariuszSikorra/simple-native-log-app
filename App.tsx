@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AppLoading } from "expo";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import {} from "react-redux";
 import * as Font from "expo-font";
 
 import NavigatorStack from "./components/NavigatorStack";
@@ -16,7 +17,7 @@ const fetchFonts = () => {
 
 const store = createStore(reducer);
 
-export default function App() {
+const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   if (!dataLoaded) {
@@ -30,8 +31,10 @@ export default function App() {
   }
 
   return (
-    <Provider store={store} >
+    <Provider store={store}>
       <NavigatorStack />
     </Provider>
   );
-}
+};
+
+export default App;

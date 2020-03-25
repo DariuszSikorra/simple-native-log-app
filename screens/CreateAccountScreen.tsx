@@ -5,7 +5,8 @@ import {
   View,
   Image,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Dimensions
 } from "react-native";
 
 import Colors from "../assets/theme/Colors";
@@ -44,6 +45,9 @@ const CreateAccountScreen = ({ navigation }) => {
 
 export default CreateAccountScreen;
 
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   screen: {
     justifyContent: "flex-start"
@@ -52,24 +56,29 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    width: "100%"
+    width: windowWidth
   },
   backButtonContainer: {
     alignSelf: "flex-start"
   },
   mainTextContainer: {
     width: "80%",
-    marginBottom: 120
+    // marginBottom: 120
+    marginBottom: windowHeight * 0.15,
   },
   mainText: {
     fontFamily: "quicksand-bold",
     color: Colors.primary,
-    fontSize: 39,
-    lineHeight: 49,
+    // fontSize: 39,
+    fontSize: windowHeight * 0.035 +10 ,
     textAlign: "center"
   },
   personImgContainer: {
-    marginBottom: 30
+    // marginBottom: 30
+    marginBottom: windowHeight * 0.06 - 10
   },
-  personImg: {}
+  personImg: {
+    width: windowWidth * 0.9,
+    height: windowWidth * 0.11
+  }
 });

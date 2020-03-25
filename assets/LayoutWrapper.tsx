@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView, Dimensions, View, SafeAreaView } from "react-native";
+import { StyleSheet, ScrollView, Dimensions, View, SafeAreaView, Platform } from "react-native";
 
 const LayoutWrapper = props => {
   return (

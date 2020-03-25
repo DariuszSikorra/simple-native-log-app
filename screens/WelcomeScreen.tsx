@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Alert, Image } from "react-native";
+import { StyleSheet, Text, View, Alert, Image, Dimensions } from "react-native";
 
 import Colors from "../assets/theme/Colors";
 import Header from "../assets/Header";
@@ -49,29 +49,46 @@ const WelcomeScreen = props => {
 
 export default WelcomeScreen;
 
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
-  headerTextContainer: {},
+  headerTextContainer: {
+    // marginTop: 22
+    marginTop: windowHeight * 0.01 + 16
+  },
   headerText: {
     fontFamily: "quicksand-bold",
-    fontSize: 20,
+    // fontSize: 20,
+    fontSize: windowHeight * 0.012 + 10,
     textAlign: "center",
     color: Colors.primary
   },
-  imgContainer: { marginTop: 30 },
-  img: {},
-  textContainer: { marginTop: 100, width: "80%" },
+  imgContainer: { marginTop: windowHeight * 0.03 + 10 },
+  img: {
+    width: windowWidth * 0.5,
+    height: windowWidth * 0.5
+  },
+  textContainer: {
+    // marginTop: 100,
+    marginTop: windowHeight * 0.14 - 20,
+    width: "80%"
+  },
   mainText: {
     fontFamily: "quicksand-bold",
-    fontSize: 39,
+    // fontSize: 39,
+    fontSize: windowHeight * 0.035 + 10,
     textAlign: "center",
     color: Colors.primary
   },
   secText: {
     fontFamily: "quicksand",
-    fontSize: 16,
+    // fontSize: 16,
+    fontSize: windowHeight * 0.012 + 5,
     textAlign: "center",
     color: Colors.primary,
-    marginTop: 40
+    // marginTop: 40
+    marginTop: windowHeight * 0.037 + 5
   },
   buttonContainer: { flex: 1, justifyContent: "flex-end" },
   createNewAccountButton: {

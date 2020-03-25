@@ -1,15 +1,55 @@
-
+import { SAVE_EMAIL_PASSWORD, SAVE_USER_PICTURE } from "./actions";
 
 type initialState = {
-    userImage: string
-}
+  userData: userData;
+};
+
+type userData = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  userPicture: string;
+  dateOfBirth: null | number;
+  phone: null | number;
+  SSN: null | number;
+};
 
 const initialState = {
-    userImage: ""
-} 
+  userData: {
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    userPicture: "",
+    dateOfBirth: null,
+    phone: null,
+    SSN: null
+  }
+};
 
 const reducer = (state = initialState, action) => {
-    return state
-}
+  switch (action.type) {
+    case SAVE_USER_PICTURE:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          userPicture: action.payload
+        }
+      };
+    case SAVE_EMAIL_PASSWORD:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          email: action.payload.email,
+          password: action.payload.password
+        }
+      }
+    default:
+      return state;
+  }
+};
 
-export default reducer
+export default reducer;
