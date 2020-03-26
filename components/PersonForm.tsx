@@ -3,10 +3,11 @@ import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import Input from "./Input";
+import Input from "./reusable/Input";
 import ConfirmationButton from "./ConfirmationButton";
 import Colors from "../assets/theme/Colors";
 import { SAVE_EMAIL_PASSWORD } from "../store/actions";
+import FormField from "./reusable/FormField";
 
 type defaultValuesType = {
   email: string;
@@ -48,12 +49,11 @@ const PersonForm = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <Controller
+        <FormField
           name="email"
           placeholder="email"
           autoCapitalize="none"
           keyboardType="email-address"
-          as={Input}
           control={control}
           onChangeText={(text: string) => {
             setValue("email", text);
