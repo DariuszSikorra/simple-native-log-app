@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import Input from "./Input";
@@ -20,7 +20,7 @@ const defaultValues: defaultValuesType = {
 
 const PersonForm = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { register, handleSubmit, setValue, watch, errors } = useForm({
+  const { handleSubmit, setValue, watch, errors, control } = useForm({
     defaultValues,
     validateCriteriaMode: "all"
   });
@@ -34,36 +34,30 @@ const PersonForm = ({ navigation }) => {
     });
   };
 
-  useEffect(() => {
-    register(
-      { name: "email" },
-      {
-        required: "Email address is required",
-        pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      }
-    );
+  const emailRules = {
+    required: "Email address is required",
+    pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  };
 
-    register(
-      { name: "password" },
-      {
-        required: "Password is required",
-        pattern: /^(?=.*\d)[A-Za-z\d].*$/,
-        minLength: 6
-      }
-    );
-  }, [register]);
+  const passwordRules = {
+    required: "Password is required",
+    pattern: /^(?=.*\d)[A-Za-z\d].*$/,
+    minLength: 6
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <Input
-          blurOnSubmit={true}
-          autoCapitalize="none"
+        <Controller
+          name="email"
           placeholder="email"
-          textContentType="emailAddress"
+          autoCapitalize="none"
+          as={Input}
+          control={control}
           onChangeText={text => {
             setValue("email", text);
           }}
+          rules={emailRules}
           value={values.email}
         />
         <View style={styles.validationErrorContainer}>
@@ -81,16 +75,18 @@ const PersonForm = ({ navigation }) => {
       </View>
 
       <View style={styles.inputContainer}>
-        <Input
-          secureTextEntry={true}
-          autoCapitalize="none"
-          blurOnSubmit={false}
+        <Controller
+          name="password"
           placeholder="password"
-          textContentType="password"
+          autoCapitalize="none"
+          secureTextEntry={true}
+          as={Input}
+          control={control}
           onChangeText={text => {
             setValue("password", text);
           }}
           value={values.password}
+          rules={passwordRules}
         />
         <View style={styles.validationErrorContainer}>
           {errors.password &&
@@ -127,12 +123,12 @@ const PersonForm = ({ navigation }) => {
         </Text>
       </View>
       <View style={styles.nextButtonContainer}>
-        {/* <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
-          Next
-        </ConfirmationButton> */}
-        <ConfirmationButton title="Next" onPress={onSubmit}>
+        <ConfirmationButton title="Next" onPress={handleSubmit(onSubmit)}>
           Next
         </ConfirmationButton>
+        {/* <ConfirmationButton title="Next" onPress={onSubmit}>
+          Next
+        </ConfirmationButton> */}
       </View>
     </View>
   );

@@ -22,7 +22,7 @@ const WelcomeScreen = props => {
       <View style={styles.textContainer}>
         <Text style={styles.mainText}>Let's get started</Text>
         <Text style={styles.secText}>
-          Create a new account or log in to an exsisting one.
+          Create a new account or log in to an existing one.
         </Text>
       </View>
       <View style={styles.buttonContainer}>

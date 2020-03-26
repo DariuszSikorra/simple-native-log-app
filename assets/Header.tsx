@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Image, View, Platform, Dimensions } from "react-native";
 
 const Header = () => {
-  if (Dimensions.get("window").height < 850) {
+  
+  useEffect(() => {
+    console.log(Dimensions.get("window").height)
+  }, [])
+  
+  if (Dimensions.get("window").height < 600) {
     return <View />
   } else {
     return (
@@ -21,7 +26,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "100%",
     // paddingTop: Platform.OS === "ios" ? 10 : 30,
-    paddingTop: Platform.OS === "ios" ? windowHeight * 0.015 : windowHeight * 0.03,
+    paddingTop: Platform.OS === "ios" ? windowHeight * 0.015 : windowHeight * 0.03 + 6,
     alignItems: "center",
   },
 
