@@ -9,7 +9,7 @@ type userData = {
   password: string;
   firstName: string;
   lastName: string;
-  userPicture: string;
+  userPicture: null | string;
   dateOfBirth: null | number;
   phone: null | number;
   SSN: null | number;
@@ -21,7 +21,7 @@ const initialState = {
     password: "",
     firstName: "",
     lastName: "",
-    userPicture: "",
+    userPicture: null,
     dateOfBirth: null,
     phone: null,
     SSN: null

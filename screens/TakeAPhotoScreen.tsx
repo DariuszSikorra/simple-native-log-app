@@ -16,6 +16,7 @@ const TakeAPhotoScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const userState = useSelector(state => state.userData);
   const [picture, setPicture] = useState(null);
+  const [error, setError] = useState(false);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -42,11 +43,20 @@ const TakeAPhotoScreen = ({ navigation }) => {
     });
 
     setPicture(image.uri);
+    setError(false);
   };
 
   const handleContinue = () => {
     dispatch({ type: SAVE_USER_PICTURE, payload: picture });
-    navigation.popToTop();
+
+    if (picture) {
+      navigation.popToTop();
+    }
+
+    if (!picture) {
+      setError(true);
+    }
+
     console.log(userState);
   };
 
@@ -63,13 +73,16 @@ const TakeAPhotoScreen = ({ navigation }) => {
       </View>
       <View style={styles.minorTextContainer}>
         <Text style={styles.minorText}>
-          First, let’s see if we can make this easy. Take and cut your picture to
-          required format:
+          First, let’s see if we can make this easy. Take and cut your picture
+          to required format:
         </Text>
       </View>
       {!picture ? (
         <View style={styles.imageContainer}>
-          <TouchableOpacity  onPress={handleTakePicture} style={styles.previewImage}>
+          <TouchableOpacity
+            onPress={handleTakePicture}
+            style={styles.previewImage}
+          >
             <View style={styles.prevImageTextContainer}>
               <Text style={styles.minorText}>Take a picture</Text>
             </View>
@@ -82,7 +95,13 @@ const TakeAPhotoScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       )}
-
+      <View style={styles.noticeContainer}>
+        {error && (
+          <Text style={styles.noticeText}>
+            To go further please take a picture.
+          </Text>
+        )}
+      </View>
       <ConfirmationButton onPress={handleContinue}>Continue</ConfirmationButton>
     </LayoutWrapper>
   );
@@ -120,7 +139,7 @@ const styles = StyleSheet.create({
     fontSize: windowHeight * 0.015 + 5,
     width: windowWidth * 0.85,
     // marginTop: 30
-    marginTop: windowHeight * 0.02 + 5,
+    marginTop: windowHeight * 0.02 + 5
   },
   imageContainer: {
     flex: 1,
@@ -131,14 +150,24 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.6,
     height: windowWidth * 0.6,
     borderRadius: windowWidth * 0.4,
-    borderColor: "gray",
+    borderColor: Colors.button,
     borderWidth: 1,
-    backgroundColor: "lightgray",
+    backgroundColor: "lightgray"
   },
   prevImageTextContainer: {
     alignItems: "center",
     justifyContent: "center",
     flex: 1
   },
-  imageButton: {}
+  imageButton: {},
+  noticeContainer: {
+    margin: windowHeight * 0.04 - 10,
+    height: windowHeight * 0.01 + 6
+  },
+  noticeText: {
+    textAlign: "center",
+    fontFamily: "quicksand",
+    fontSize: windowHeight * 0.01 + 6,
+    color: Colors.messages
+  }
 });

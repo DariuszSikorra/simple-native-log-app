@@ -52,9 +52,10 @@ const PersonForm = ({ navigation }) => {
           name="email"
           placeholder="email"
           autoCapitalize="none"
+          keyboardType="email-address"
           as={Input}
           control={control}
-          onChangeText={text => {
+          onChangeText={(text: string) => {
             setValue("email", text);
           }}
           rules={emailRules}
@@ -80,11 +81,13 @@ const PersonForm = ({ navigation }) => {
           placeholder="password"
           autoCapitalize="none"
           secureTextEntry={true}
+          blurOnSubmit={false}
           as={Input}
           control={control}
-          onChangeText={text => {
+          onChangeText={(text: string) => {
             setValue("password", text);
           }}
+          blurOn
           value={values.password}
           rules={passwordRules}
         />
