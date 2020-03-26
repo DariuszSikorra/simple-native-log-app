@@ -29,9 +29,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: "quicksand",
     color: Colors.primary,
-    // fontSize: 20
     fontSize: windowHeight * 0.015 + 8,
-    // margin: 15
     margin: windowHeight * 0.015 + 10,
     marginTop: Platform.OS === "ios" ?  windowHeight * 0.01 : 48 - windowHeight * 0.025
   }

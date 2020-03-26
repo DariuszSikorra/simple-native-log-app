@@ -56,8 +56,6 @@ const TakeAPhotoScreen = ({ navigation }) => {
     if (!picture) {
       setError(true);
     }
-
-    console.log(userState);
   };
 
   return (
@@ -123,7 +121,6 @@ const styles = StyleSheet.create({
   mainText: {
     fontFamily: "quicksand-bold",
     color: Colors.primary,
-    // fontSize: 39,
     fontSize: windowHeight * 0.035 + 10,
     textAlign: "center"
   },
@@ -135,10 +132,8 @@ const styles = StyleSheet.create({
     fontFamily: "quicksand",
     textAlign: "center",
     color: Colors.primary,
-    // fontSize: 16,
     fontSize: windowHeight * 0.015 + 5,
     width: windowWidth * 0.85,
-    // marginTop: 30
     marginTop: windowHeight * 0.02 + 5
   },
   imageContainer: {

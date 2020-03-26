@@ -145,19 +145,15 @@ const windowWidth = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   container: { width: windowWidth * 0.9, flex: 1 },
   inputContainer: {
-    // height: 56,
     height: windowHeight * 0.04 + 15,
-    // marginBottom: 40
     marginBottom: windowHeight * 0.01 + 30
   },
   validationErrorContainer: {
-    // marginTop: 5
     marginTop: windowHeight * 0.015 - 4
   },
   validationError: {
     textAlign: "center",
     fontFamily: "quicksand",
-    // fontSize: 13,
     fontSize: windowHeight * 0.01 + 6,
     color: Colors.messages
   },
@@ -168,10 +164,8 @@ const styles = StyleSheet.create({
     fontFamily: "quicksand",
     textAlign: "center",
     color: Colors.primary,
-    // fontSize: 16,
     fontSize: windowHeight * 0.013 + 5,
     width: "90%",
-    // marginTop: 30
     marginTop: windowHeight * 0.025
   },
   nextButtonContainer: {

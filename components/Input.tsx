@@ -20,9 +20,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.primary,
     borderRadius: 4,
-    // height: 50,
     height: windowHeight * 0.035 + 25,
-    // padding: 13
     padding: windowHeight * 0.01 + 5,
     fontSize: windowHeight * 0.015 + 4
   }

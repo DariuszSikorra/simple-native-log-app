@@ -54,12 +54,10 @@ const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   headerTextContainer: {
-    // marginTop: 22
     marginTop: windowHeight * 0.01 + 16
   },
   headerText: {
     fontFamily: "quicksand-bold",
-    // fontSize: 20,
     fontSize: windowHeight * 0.012 + 10,
     textAlign: "center",
     color: Colors.primary
@@ -70,24 +68,20 @@ const styles = StyleSheet.create({
     height: windowWidth * 0.5
   },
   textContainer: {
-    // marginTop: 100,
     marginTop: windowHeight * 0.14 - 20,
     width: "80%"
   },
   mainText: {
     fontFamily: "quicksand-bold",
-    // fontSize: 39,
     fontSize: windowHeight * 0.035 + 10,
     textAlign: "center",
     color: Colors.primary
   },
   secText: {
     fontFamily: "quicksand",
-    // fontSize: 16,
     fontSize: windowHeight * 0.012 + 5,
     textAlign: "center",
     color: Colors.primary,
-    // marginTop: 40
     marginTop: windowHeight * 0.037 + 5
   },
   buttonContainer: { flex: 1, justifyContent: "flex-end" },

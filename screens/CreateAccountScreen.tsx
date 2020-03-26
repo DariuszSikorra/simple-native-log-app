@@ -63,18 +63,15 @@ const styles = StyleSheet.create({
   },
   mainTextContainer: {
     width: "80%",
-    // marginBottom: 120
     marginBottom: windowHeight * 0.15,
   },
   mainText: {
     fontFamily: "quicksand-bold",
     color: Colors.primary,
-    // fontSize: 39,
     fontSize: windowHeight * 0.035 +10 ,
     textAlign: "center"
   },
   personImgContainer: {
-    // marginBottom: 30
     marginBottom: windowHeight * 0.06 - 10
   },
   personImg: {

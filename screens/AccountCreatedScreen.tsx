@@ -37,7 +37,6 @@ const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   imageContainer: {
-    // marginTop: 160
     marginTop: windowHeight * 0.2
   },
   image: {
@@ -46,12 +45,10 @@ const styles = StyleSheet.create({
   },
   mainTextContainer: {
     width: "80%",
-    // marginTop: 50
     marginTop: windowHeight * 0.06
   },
   mainText: {
     fontFamily: "quicksand-bold",
-    // fontSize: 48,
     fontSize: windowHeight * 0.045 + 10,
     textAlign: "center",
     color: Colors.primary
