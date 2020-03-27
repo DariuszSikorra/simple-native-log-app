@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import Colors from "../assets/theme/Colors";
 import Header from "../assets/Header";
 import LayoutWrapper from "../assets/LayoutWrapper";
-import ConfirmationButton from "../components/ConfirmationButton";
+import ConfirmationButton from "../components/reusable/ConfirmationButton";
 
 const AccountCreatedScreen = ({ navigation }) => {
   return (

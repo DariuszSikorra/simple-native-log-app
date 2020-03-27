@@ -14,7 +14,7 @@ import Colors from "../assets/theme/Colors";
 import PersonForm from "../components/PersonForm";
 import Header from "../assets/Header";
 import LayoutWrapper from "../assets/LayoutWrapper";
-import NavigationButton from "../components/NavigationButton";
+import NavigationButton from "../components/reusable/NavigationButton";
 
 const CreateAccountScreen = ({ navigation }) => {
   return (

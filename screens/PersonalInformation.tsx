@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import LayoutWrapper from '../assets/LayoutWrapper'
-import ConfirmationButton from '../components/ConfirmationButton'
+import ConfirmationButton from '../components/reusable/ConfirmationButton'
 
 const PersonalInformation = ({navigation}) => {
     const handleContinue = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, TouchableNativeFeedback,Platform, Dimensions } from "react-native";
-import Colors from "../assets/theme/Colors";
+import Colors from "../../assets/theme/Colors";
 
 const NavigationButton = props => {
     let ButtonComponent: any = TouchableOpacity;
@@ -21,7 +21,6 @@ const NavigationButton = props => {
 export default NavigationButton;
 
 const windowHeight = Dimensions.get("window").height;
-const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   buttonContainer: {

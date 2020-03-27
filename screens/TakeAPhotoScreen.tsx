@@ -5,10 +5,10 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 
 import LayoutWrapper from "../assets/LayoutWrapper";
-import ConfirmationButton from "../components/ConfirmationButton";
+import ConfirmationButton from "../components/reusable/ConfirmationButton";
 import { SAVE_USER_PICTURE } from "../store/actions";
 import Header from "../assets/Header";
-import NavigationButton from "../components/NavigationButton";
+import NavigationButton from "../components/reusable/NavigationButton";
 import Colors from "../assets/theme/Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 

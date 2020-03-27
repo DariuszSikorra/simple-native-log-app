@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import Input from "./reusable/Input";
-import ConfirmationButton from "./ConfirmationButton";
+import ConfirmationButton from "./reusable/ConfirmationButton";
 import Colors from "../assets/theme/Colors";
 import { SAVE_EMAIL_PASSWORD } from "../store/actions";
 import FormField from "./reusable/FormField";
@@ -37,80 +36,54 @@ const PersonForm = ({ navigation }) => {
 
   const emailRules = {
     required: "Email address is required",
-    pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    pattern: {
+      value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      message: "Email in not valid"
+    }
   };
 
   const passwordRules = {
     required: "Password is required",
-    pattern: /^(?=.*\d)[A-Za-z\d].*$/,
-    minLength: 6
+    pattern: {
+      value: /^(?=.*\d)[A-Za-z\d].*$/,
+      message: "Password is to short"
+    },
+    minLength: { value: 6, message: "Password require at least 1 digit." }
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <FormField
-          name="email"
-          placeholder="email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          control={control}
-          onChangeText={(text: string) => {
-            setValue("email", text);
-          }}
-          rules={emailRules}
-          value={values.email}
-        />
-        <View style={styles.validationErrorContainer}>
-          {errors.email &&
-            //@ts-ignore
-            errors.email.types.required && (
-              <Text style={styles.validationError}>Email is required</Text>
-            )}
-          {errors.email &&
-            //@ts-ignore
-            errors.email.types.pattern && (
-              <Text style={styles.validationError}>Email in not valid</Text>
-            )}
-        </View>
-      </View>
+      <FormField
+        name="email"
+        placeholder="email"
+        autoCapitalize="none"
+        keyboardType="email-address"
+        secureTextEntry={false}
+        blurOnSubmit={false}
+        control={control}
+        onChangeText={(text: string) => {
+          setValue("email", text);
+        }}
+        rules={emailRules}
+        value={values.email}
+        errors={errors.email}
+      />
 
-      <View style={styles.inputContainer}>
-        <Controller
-          name="password"
-          placeholder="password"
-          autoCapitalize="none"
-          secureTextEntry={true}
-          blurOnSubmit={false}
-          as={Input}
-          control={control}
-          onChangeText={(text: string) => {
-            setValue("password", text);
-          }}
-          blurOn
-          value={values.password}
-          rules={passwordRules}
-        />
-        <View style={styles.validationErrorContainer}>
-          {errors.password &&
-            //@ts-ignore
-            errors.password.types.required && (
-              <Text style={styles.validationError}>Password is required</Text>
-            )}
-          {errors.password &&
-            //@ts-ignore
-            errors.password.types.minLength && (
-              <Text style={styles.validationError}>Password is to short</Text>
-            )}
-          {errors.password &&
-            //@ts-ignore
-            errors.password.types.pattern && (
-              <Text style={styles.validationError}>
-                Password require at least 1 digit.
-              </Text>
-            )}
-        </View>
-      </View>
+      <FormField
+        name="password"
+        placeholder="password"
+        autoCapitalize="none"
+        keyboardType="default"
+        secureTextEntry={true}
+        blurOnSubmit={false}
+        control={control}
+        onChangeText={(text: string) => {
+          setValue("password", text);
+        }}
+        value={values.password}
+        rules={passwordRules}
+        errors={errors.password}
+      />
 
       <View style={styles.agreementContainer}>
         <Text style={styles.agreement}>
@@ -144,10 +117,7 @@ const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: { width: windowWidth * 0.9, flex: 1 },
-  inputContainer: {
-    height: windowHeight * 0.04 + 15,
-    marginBottom: windowHeight * 0.01 + 30
-  },
+
   validationErrorContainer: {
     marginTop: windowHeight * 0.015 - 4
   },
